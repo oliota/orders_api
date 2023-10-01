@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "776e1520-60f6-4b99-ac20-fca2087700ea",
+		"name": "API 2023 PT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "3053638"
+	},
+	"item": [
+		{
+			"name": "001 - TEST",
+			"item": [
+				{
+					"name": "001 create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "name",
+								"value": "pessoa2"
+							},
+							{
+								"key": "email",
+								"value": "p2@gmail.com"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=9F8A3B0F5363FBC116F3B5428642FE07"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"user_test\",\r\n  \"email\": \"teste@gmail.com\"\r\n}"
+						},
+						"url": "http://localhost:8080/users"
+					},
+					"response": []
+				},
+				{
+					"name": "002 create item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=9F8A3B0F5363FBC116F3B5428642FE07"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"item_test\"\r\n}"
+						},
+						"url": "http://localhost:8080/items"
+					},
+					"response": []
+				},
+				{
+					"name": "003 try create order without stock",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=9F8A3B0F5363FBC116F3B5428642FE07"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"itemId\": 1,\r\n    \"quantity\": 1\r\n}"
+						},
+						"url": "http://localhost:8080/customer-orders/create"
+					},
+					"response": []
+				},
+				{
+					"name": "004 create stock for itemId 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=9F8A3B0F5363FBC116F3B5428642FE07"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"itemId\": 1,\r\n  \"quantity\": 1\r\n}"
+						},
+						"url": "http://localhost:8080/stock-movements"
+					},
+					"response": []
+				},
+				{
+					"name": "005 create customer-order with success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=9F8A3B0F5363FBC116F3B5428642FE07"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"itemId\": 1,\r\n    \"quantity\": 1\r\n}"
+						},
+						"url": "http://localhost:8080/customer-orders/create"
+					},
+					"response": []
+				},
+				{
+					"name": "006 complete customer-order with sending email ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=9F8A3B0F5363FBC116F3B5428642FE07"
+							}
+						],
+						"url": "http://localhost:8080/customer-orders/complete/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stock-movements",
+			"item": [
+				{
+					"name": "http://localhost:8080/stock-movements",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"itemId\": 1,\r\n  \"quantity\": 1\r\n}"
+						},
+						"url": "http://localhost:8080/stock-movements"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/stock-movements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/stock-movements"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/stock-movements/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/stock-movements/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/stock-movements/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"itemId\": 1,\r\n  \"quantity\": 20,\r\n  \"customerOrderId\": 2\r\n}"
+						},
+						"url": "http://localhost:8080/stock-movements/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/stock-movements/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/stock-movements/{id}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "item",
+			"item": [
+				{
+					"name": "http://localhost:8080/items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/items"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/items/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/items/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/items",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"item_test\"\r\n}"
+						},
+						"url": "http://localhost:8080/items"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/items/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Novo Nome do Item\"\r\n}"
+						},
+						"url": "http://localhost:8080/items/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/items/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/items/{id}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "http://localhost:8080/users/<id>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"<newName>\",\r\n  \"email\": \"<newEmail>\"\r\n}"
+						},
+						"url": "http://localhost:8080/users/<id>"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/users/<id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users/<id>"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "name",
+								"value": "pessoa2",
+								"type": "text"
+							},
+							{
+								"key": "email",
+								"value": "p2@gmail.com",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"user_test\",\r\n  \"email\": \"teste@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/users"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/users/{userId}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/users/{userId}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer-orders",
+			"item": [
+				{
+					"name": "http://localhost:8080/customer-orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/customer-orders"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/customer-orders/<order_id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/customer-orders/<order_id>"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/customer-orders/<order_id>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"creationDate\": \"2023-10-01T12:00:00\",\r\n    \"stockMovements\": [],\r\n    \"userId\": 1,\r\n    \"itemId\": 2,\r\n    \"quantity\": 10\r\n}"
+						},
+						"url": "http://localhost:8080/customer-orders/<order_id>"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/customer-orders/<order_id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/customer-orders/<order_id>"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/customer-orders/create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"itemId\": 1,\r\n    \"quantity\": 1\r\n}"
+						},
+						"url": "http://localhost:8080/customer-orders/create"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/customer-orders/complete/5",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/customer-orders/complete/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

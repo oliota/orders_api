@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: com.rubem.oliota.api2023.pt.Api2023PtApplication
+
