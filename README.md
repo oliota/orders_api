@@ -13,6 +13,8 @@ Backend for challenger in 2023 .
 
 ## Installation and Configuration
 
+### [Video with brief explanation](./VIDEO.mp4)
+
 ### [Application Details](./docs/application-details.md)
 
 ### [Challenge Scope](./docs/challenge-scope.md)
